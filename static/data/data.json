@@ -1,0 +1,9 @@
+{
+    "restaurant": {
+        "name": "Planas B",
+        "address": "Vilniaus g. 1, Kuršėnai, 81154 Šiaulių r. sav.",
+        "phone": "+370 662 40 200",
+        "hours": "09:00 - 18:00",
+        "wifi": "slaptazodis123"
+    }
+}
