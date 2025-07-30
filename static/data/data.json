@@ -68,6 +68,14 @@
             "folder": "hot-meals",
             "items": [
                 {
+                    "name": "\"Homemade\" dumplings",
+                    "image": "dumplings.webp",
+                    "description": "Vareniki with mashed potatoes and fried chanterelles",
+                    "weight": "250",
+                    "price": "4.5",
+                    "isVegan": false
+                },
+                {
                     "name": "Hot rolls",
                     "image": "hot-rolls.webp",
                     "description": "",
@@ -81,14 +89,6 @@
                     "description": "Pancakes with salmon and salad",
                     "weight": "150",
                     "price": "6.5",
-                    "isVegan": false
-                },
-                {
-                    "name": "\"Homemade\" dumplings",
-                    "image": "dumplings.webp",
-                    "description": "Vareniki with mashed potatoes and fried chanterelles",
-                    "weight": "250",
-                    "price": "4.5",
                     "isVegan": false
                 },
                 {

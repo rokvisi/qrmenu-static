@@ -10,19 +10,27 @@
 	});
 
 	// beforeNavigate((navigation) => {
+	// 	const required_transition_class = 'cat-image';
+	// 	const required_transition_name = `cat-image-${formatCssPropertyValue(data.category.name)}`;
+	// 	const first_image_el = document.querySelectorAll('[data-arr-index="0"]')[0] as HTMLImageElement;
+
 	// 	// Get the element closes to the center of the viewport.
 	// 	const centeredElement = document.elementFromPoint(
 	// 		window.innerWidth / 2,
 	// 		window.innerHeight / 2
 	// 	);
 
+	// 	// Set the closest image as the transition element.
 	// 	const closestImage = centeredElement?.closest('img');
+	// 	if (closestImage) {
+	// 		// Remove the transition class and name from the previous image.
+	// 		first_image_el.style.viewTransitionClass = '';
+	// 		first_image_el.style.viewTransitionName = '';
 
-	//     // Set the closest image as the transition element.
-	//     if (closestImage) {
-	// 		closestImage.style.viewTransitionClass = "cat-image";
-	//         closestImage.style.viewTransitionName = `cat-image-${formatCssPropertyValue(data.category)}`;
-	//     }
+	// 		// Attach the transition class and name to the closest image.
+	// 		closestImage.style.viewTransitionClass = required_transition_class;
+	// 		closestImage.style.viewTransitionName = required_transition_name;
+	// 	}
 
 	// 	console.log(closestImage);
 	// });
@@ -30,7 +38,7 @@
 
 <div>
 	<h2
-		class="z-50 mb-[18px] text-xl text-[var(--text-color-main)]"
+		class="mb-[18px] text-xl text-[var(--text-color-main)]"
 		style="width: fit-content; view-transition-class: cat-title; view-transition-name: cat-title-{formatCssPropertyValue(
 			data.category.name
 		)}"
@@ -41,6 +49,7 @@
 		{#each data.category.items as item, i}
 			<div>
 				<img
+					data-arr-index={i}
 					style={i === 0
 						? `view-transition-class: cat-image; view-transition-name: cat-image-${formatCssPropertyValue(data.category.name)}`
 						: ''}

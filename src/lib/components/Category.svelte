@@ -36,7 +36,7 @@
 		}}
 	>
 		<h2
-			class="z-50"
+			class=""
 			style="width: fit-content; view-transition-class: cat-title; view-transition-name: cat-title-{formatCssPropertyValue(
 				title
 			)}"
