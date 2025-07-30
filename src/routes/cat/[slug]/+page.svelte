@@ -1,47 +1,49 @@
 <script lang="ts">
-	import { beforeNavigate, onNavigate } from '$app/navigation';
-	import { formatCssPropertyValue, setTransitionToLeft } from '$lib';
+	import { beforeNavigate } from '$app/navigation';
+	import { getElementClosestToViewportTop, setTransitionToRight } from '$lib';
 	import { onMount } from 'svelte';
 
 	const { data } = $props();
 
 	onMount(() => {
-		setTransitionToLeft();
+		setTransitionToRight();
 	});
 
-	// beforeNavigate((navigation) => {
-	// 	const required_transition_class = 'cat-image';
-	// 	const required_transition_name = `cat-image-${formatCssPropertyValue(data.category.name)}`;
-	// 	const first_image_el = document.querySelectorAll('[data-arr-index="0"]')[0] as HTMLImageElement;
+	beforeNavigate((navigation) => {
+		if (navigation.to?.url.pathname !== '/') {
+			// If the user is not going home, disable the transitions for the first (and only) image.
+			const firstImage = document.querySelector('img[data-arr-index="0"]') as HTMLImageElement;
+			if (firstImage) {
+				firstImage.style.viewTransitionClass = '';
+				firstImage.style.viewTransitionName = '';
+			}
 
-	// 	// Get the element closes to the center of the viewport.
-	// 	const centeredElement = document.elementFromPoint(
-	// 		window.innerWidth / 2,
-	// 		window.innerHeight / 2
-	// 	);
+			return;
+		}
 
-	// 	// Set the closest image as the transition element.
-	// 	const closestImage = centeredElement?.closest('img');
-	// 	if (closestImage) {
-	// 		// Remove the transition class and name from the previous image.
-	// 		first_image_el.style.viewTransitionClass = '';
-	// 		first_image_el.style.viewTransitionName = '';
+		const required_transition_class = 'cat-image';
+		const required_transition_name = `vt-cat-image`;
+		const first_image_el = document.querySelectorAll('[data-arr-index="0"]')[0] as HTMLImageElement;
 
-	// 		// Attach the transition class and name to the closest image.
-	// 		closestImage.style.viewTransitionClass = required_transition_class;
-	// 		closestImage.style.viewTransitionName = required_transition_name;
-	// 	}
+		const closestImage = getElementClosestToViewportTop<HTMLImageElement>('img[data-arr-index]');
+		if (!closestImage) {
+			console.warn('No closest image found for transition.');
+			return;
+		}
 
-	// 	console.log(closestImage);
-	// });
+		first_image_el.style.viewTransitionClass = '';
+		first_image_el.style.viewTransitionName = '';
+
+		// Attach the transition class and name to the closest image.
+		closestImage.style.viewTransitionClass = required_transition_class;
+		closestImage.style.viewTransitionName = required_transition_name;
+	});
 </script>
 
 <div>
 	<h2
 		class="mb-[18px] text-xl text-[var(--text-color-main)]"
-		style="width: fit-content; view-transition-class: cat-title; view-transition-name: cat-title-{formatCssPropertyValue(
-			data.category.name
-		)}"
+		style="width: fit-content; view-transition-class: cat-title; view-transition-name: vt-cat-title"
 	>
 		{data.category.name}
 	</h2>
@@ -51,14 +53,17 @@
 				<img
 					data-arr-index={i}
 					style={i === 0
-						? `view-transition-class: cat-image; view-transition-name: cat-image-${formatCssPropertyValue(data.category.name)}`
+						? `view-transition-class: cat-image; view-transition-name: vt-cat-image`
 						: ''}
 					src="/images/{data.category.folder}/{item.image}"
 					alt=""
 					class="z-40 mb-2.5 inline-block h-[327px] w-full rounded-[26px] object-cover object-center"
 				/>
 				<div class="flex items-center justify-between">
-					<h3 class="mb-1.5 font-semibold text-[var(--text-color-main)]">{item.name}</h3>
+					<h3 class="mb-1.5 font-semibold text-[var(--text-color-main)]">
+						{item.name}
+						{document.querySelector(`img[data-arr-index="${i}"]`)?.clientTop}
+					</h3>
 					<span class="text-sm text-[var(--text-color-muted)]">{item.weight} g</span>
 				</div>
 

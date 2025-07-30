@@ -15,15 +15,20 @@
 	import { dev } from '$app/environment';
 	import { getTimezoneTime } from '$lib';
 	import { onNavigate } from '$app/navigation';
+	import { triggerViewTransitionEnd } from '$lib/onViewTransitionEnd';
 
 	// Enable page transitions.
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
 
 		return new Promise((resolve) => {
-			document.startViewTransition(async () => {
+			const viewTransition = document.startViewTransition(async () => {
 				resolve();
 				await navigation.complete;
+			});
+
+			viewTransition.finished.then(() => {
+				triggerViewTransitionEnd();
 			});
 		});
 	});
@@ -110,12 +115,11 @@
 	.vt-main-content {
 		view-transition-name: vt-main-content;
 	}
-
-	/* :root::view-transition-old(vt-main-content) {
+	:root::view-transition-old(vt-main-content) {
 		animation: var(--vt-old);
 	}
 
 	:root::view-transition-new(vt-main-content) {
 		animation: var(--vt-new);
-	} */
+	}
 </style>

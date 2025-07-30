@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { setTransitionToRight } from '$lib';
+	import { setTransitionToRight, setTransitionToLeft } from '$lib';
 	import Category from '$lib/components/Category.svelte';
 	import { onMount } from 'svelte';
 
 	const { data } = $props();
 
 	onMount(() => {
-		setTransitionToRight();
+		setTransitionToLeft();
 	});
 </script>
 

@@ -45,32 +45,69 @@ export function printTransitionVariables() {
 }
 
 export function setTransitionToLeft() {
-	document.documentElement.style.setProperty(
-		'--vt-old',
-		// '90ms cubic-bezier(0.4, 0, 1, 1) both fade-out, 300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left'
-		'var(--vt-main-to-side-old)'
-	);
-	document.documentElement.style.setProperty(
-		'--vt-new',
-		// '210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in, 300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right'
-		'var(--vt-main-to-side-new)'
-	);
+	document.documentElement.style.setProperty('--vt-old', 'var(--vt-main-to-side-old)');
+	document.documentElement.style.setProperty('--vt-new', 'var(--vt-main-to-side-new)');
 }
 export function setTransitionToRight() {
-	document.documentElement.style.setProperty(
-		'--vt-old',
-		// '90ms cubic-bezier(0.4, 0, 1, 1) both fade-out, 300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right'
-		'var(--vt-side-to-main-old)'
-	);
-	document.documentElement.style.setProperty(
-		'--vt-new',
-		// '210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in, 300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left'
-		'var(--vt-side-to-main-new)'
-	);
+	document.documentElement.style.setProperty('--vt-old', 'var(--vt-side-to-main-old)');
+	document.documentElement.style.setProperty('--vt-new', 'var(--vt-side-to-main-new)');
 }
 
-export const invalidCssCharsRegex = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^`{|}~ \t\n\r]/g;
-
 export function formatCssPropertyValue(value: string): string {
+	const invalidCssCharsRegex = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^`{|}~ \t\n\r]/g;
+
 	return value.replaceAll(invalidCssCharsRegex, '');
+}
+
+export function getElementClosestToViewportTop<ElementT>(
+	selector: string,
+	cutoff: number = 0
+): ElementT | null {
+	let closestDistance = Infinity;
+	let closestElement: ElementT | null = null;
+
+	document.querySelectorAll(selector).forEach((el) => {
+		const boundingRect = el.getBoundingClientRect();
+		const dist = boundingRect.top + boundingRect.height;
+
+		if (dist < 0 || dist - cutoff < 0) {
+			// If the element is above the viewport and its bottom is above the cutoff, ignore it.
+			return;
+		}
+
+		if (dist < closestDistance) {
+			closestDistance = dist;
+			closestElement = el as ElementT;
+		}
+	});
+
+	return closestElement;
+}
+
+export function getClosestElementToCenterY<ElementT>(selector: string): ElementT | null {
+	// Center of the viewport. Y coord.
+	const centerTargetPos = window.innerHeight / 2;
+
+	// Get all elements matching the selector.
+	const elements = document.querySelectorAll(selector);
+	if (elements.length === 0) {
+		return null;
+	}
+
+	// Find the closest element to the center of the viewport.
+	let closestElement: null | Element = null;
+	let closestDistance = Infinity;
+	elements.forEach((element) => {
+		const rect = element.getBoundingClientRect();
+		const elementCenterY = rect.top + rect.height / 2;
+
+		const distance = Math.abs(elementCenterY - centerTargetPos);
+
+		if (distance < closestDistance) {
+			closestDistance = distance;
+			closestElement = element;
+		}
+	});
+
+	return closestElement;
 }
