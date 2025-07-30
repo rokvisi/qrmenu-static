@@ -1,10 +1,22 @@
 <script lang="ts">
+	import { setTransitionToRight } from '$lib';
 	import Category from '$lib/components/Category.svelte';
+	import { onMount } from 'svelte';
+
+	const { data } = $props();
+
+	onMount(() => {
+		setTransitionToRight();
+	});
 </script>
 
-<div class="space-y-4">
-	<Category title="BREAKFASTS (08:00 - 10:00)" href="breakfast" bgImg="/images/breakfast.jpg" />
-	<Category title="HOT MEALS" href="hotmeals" bgImg="/images/hotmeals.jpg" />
-	<Category title="SALADS" href="salads" bgImg="/images/salads.jpg" />
-	<Category title="DESERTS" href="deserts" bgImg="/images/deserts.jpg" />
+<div class="flex flex-col gap-4">
+	{#each data.categories as category}
+		{@const bannerImage = category.items[0]?.image || ''}
+		<Category
+			title={category.name}
+			href={category.folder}
+			bgImg="/images/{category.folder}/{bannerImage}"
+		/>
+	{/each}
 </div>

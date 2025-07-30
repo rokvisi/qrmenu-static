@@ -1,9 +1,207 @@
 {
-    "restaurant": {
-        "name": "Planas B",
-        "address": "Vilniaus g. 1, Kuršėnai, 81154 Šiaulių r. sav.",
-        "phone": "+370 662 40 200",
-        "hours": "09:00 - 18:00",
-        "wifi": "slaptazodis123"
-    }
+	"restaurant": {
+		"name": "Planas B",
+        "bannerImage": "banner.webp",
+		"address": "Vilniaus g. 1, Kuršėnai, 81154 Šiaulių r. sav.",
+		"phone": "+370 662 40 200",
+		"wifiPassword": "slaptazodis123",
+        "timezone": "Europe/Vilnius",
+        "time": {
+            "monday": "09:00 - 18:00",
+            "tuesday": "09:00 - 18:00",
+            "wednesday": "09:00 - 18:00",
+            "thursday": "09:00 - 18:00",
+            "friday": "09:00 - 18:00",
+            "saturday": "09:00 - 18:00",
+            "sunday": "09:00 - 18:00"
+        }
+	},
+	"categories": [
+        {
+            "name": "BREAKFASTS (8 AM - 10 AM)",
+            "folder": "breakfasts",
+            "items": [
+                {
+                    "name": "Full English breakfast",
+                    "image": "english.webp",
+                    "description": "Fried eggs, bacon, toast, cherry tomatoes",
+                    "weight": "400",
+                    "price": "6.99",
+                    "isVegan": false
+                },
+                {
+                    "name": "Oatmeal",
+                    "image": "oatmeal.webp",
+                    "description": "Oatmeal with seasonal berries and berry syrup",
+                    "weight": "150",
+                    "price": "3.25",
+                    "isVegan": false
+                },
+                {
+                    "name": "Cheese pancakes with strawberry jam",
+                    "image": "cheese-pancakes.webp",
+                    "description": "Fresh cottage cheese pancakes with strawberry jam and sour cream",
+                    "weight": "150",
+                    "price": "4.6",
+                    "isVegan": false
+                },
+                {
+                    "name": "Avocado toast",
+                    "image": "avocado-toast.webp",
+                    "description": "Rye toast with avocado and boiled egg",
+                    "weight": "70",
+                    "price": "2.15",
+                    "isVegan": false
+                },
+                {
+                    "name": "Catfish on pumpkin puree",
+                    "image": "catfish-fillet.webp",
+                    "description": "Catfish fillet baked with young potatoes. Served with salad and pumpkin puree",
+                    "weight": "380",
+                    "price": "6.5",
+                    "isVegan": false
+                }
+            ]
+        },
+        {
+            "name": "HOT MEALS",
+            "folder": "hot-meals",
+            "items": [
+                {
+                    "name": "Hot rolls",
+                    "image": "hot-rolls.webp",
+                    "description": "",
+                    "weight": "200",
+                    "price": "4.9",
+                    "isVegan": false
+                },
+                {
+                    "name": "Fish pancakes",
+                    "image": "fish-pancakes.webp",
+                    "description": "Pancakes with salmon and salad",
+                    "weight": "150",
+                    "price": "6.5",
+                    "isVegan": false
+                },
+                {
+                    "name": "\"Homemade\" dumplings",
+                    "image": "dumplings.webp",
+                    "description": "Vareniki with mashed potatoes and fried chanterelles",
+                    "weight": "250",
+                    "price": "4.5",
+                    "isVegan": false
+                },
+                {
+                    "name": "Soup",
+                    "image": "soup.webp",
+                    "description": "Potatoes, carrots, onions, green onions",
+                    "weight": "300",
+                    "price": "4.3",
+                    "isVegan": true
+                },
+                {
+                    "name": "Burger",
+                    "image": "burger.webp",
+                    "description": "Signature burger with a patty of your choice",
+                    "weight": "250",
+                    "price": "7.20",
+                    "isVegan": false
+                },
+                {
+                    "name": "Borscht",
+                    "image": "borscht.webp",
+                    "description": "Beetroot borsch with bacon and donuts",
+                    "weight": "400",
+                    "price": "4.6",
+                    "isVegan": false
+                }
+            ]
+        },
+        {
+            "name": "SALADS",
+            "folder": "salads",
+            "items": [
+                {
+                    "name": "Avocado salad with feta",
+                    "image": "avocado-salad.webp",
+                    "description": "Ripe avocado, feta cheese, olives and spinach salad",
+                    "weight": "300",
+                    "price": "4.9",
+                    "isVegan": false
+                },
+                {
+                    "name": "Camembert salad",
+                    "image": "camembert-salad.webp",
+                    "description": "Baked Camembert cheese with fresh vegetables",
+                    "weight": "320",
+                    "price": "4.5",
+                    "isVegan": false
+                },
+                {
+                    "name": "Greek salad",
+                    "image": "greek-salad.webp",
+                    "description": "Tomato, cucumber, olives, feta, olive oil",
+                    "weight": "300",
+                    "price": "5.5",
+                    "isVegan": false
+                },
+                {
+                    "name": "Guacamole",
+                    "image": "guacamole.webp",
+                    "description": "Mexican guacamole with nachos (MUST BE SPICY)",
+                    "weight": "200/50",
+                    "price": "3.9",
+                    "isVegan": false
+                }
+            ]
+        },
+        {
+            "name": "DESSERTS",
+            "folder": "desserts",
+            "items": [
+                {
+                    "name": "Berry ice cream",
+                    "image": "berry-ice-cream.webp",
+                    "description": "Natural ice cream made from berries",
+                    "weight": "150",
+                    "price": "2.25",
+                    "isVegan": false
+                },
+                {
+                    "name": "Raspberry mousse",
+                    "image": "raspberry-mousse.webp",
+                    "description": "Raspberry mousse with cream and raspberry syrup",
+                    "weight": "150",
+                    "price": "3.25",
+                    "isVegan": false
+                },
+                {
+                    "name": "Vanilla ice cream",
+                    "image": "vanilla-ice-cream.webp",
+                    "description": "Vanilla ice cream with chocolate filling",
+                    "weight": "120",
+                    "price": "2.5",
+                    "isVegan": false
+                },
+                {
+                    "name": "Brownie with raspberries",
+                    "image": "brownie-with-raspberries.webp",
+                    "description": "Chocolate brownie with fresh raspberries",
+                    "weight": "150",
+                    "price": "4.75",
+                    "isVegan": false
+                },
+                {
+                    "name": "Cheesecake",
+                    "image": "cheesecake.webp",
+                    "description": "",
+                    "weight": "150",
+                    "price": "4.99",
+                    "isVegan": false
+                }
+                
+            ]
+        }
+	]
 }
+

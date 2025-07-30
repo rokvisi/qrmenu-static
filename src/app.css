@@ -43,6 +43,26 @@
 	--back-btn-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 	--shadow-text: rgba(0, 0, 0, 0.46) 0px 2px 3px;
 	--text-color: rgb(103, 103, 103);
+	--text-color-main: rgb(76, 76, 76);
+	--text-color-muted: rgb(152, 152, 152);
+	--text-color-accent: rgb(247, 144, 108);
+
+	--vt-main-to-side-old:
+		90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+		200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+	--vt-main-to-side-new:
+		210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+		200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+
+	--vt-side-to-main-old:
+		90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+		200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
+	--vt-side-to-main-new:
+		210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+		200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
+
+	--vt-old: var(--vt-main-to-side-old);
+	--vt-new: var(--vt-main-to-side-new);
 }
 
 .dark {
@@ -118,10 +138,57 @@
 }
 
 @layer base {
+	html {
+		background-color: #f3f1ef;
+		font-family: 'Rubik Variable', sans-serif;
+
+		/* Hide scrollbar for Chrome, Safari and Opera */
+		::-webkit-scrollbar {
+			display: none;
+		}
+
+		/* Hide scrollbar for IE, Edge and Firefox */
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
 	* {
 		@apply border-border outline-ring/50;
 	}
 	body {
 		@apply bg-background text-foreground;
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+	}
+
+	@keyframes fade-out {
+		to {
+			opacity: 0;
+		}
+	}
+
+	@keyframes slide-from-right {
+		from {
+			transform: translateX(32px);
+		}
+	}
+	@keyframes slide-to-right {
+		to {
+			transform: translateX(32px);
+		}
+	}
+
+	@keyframes slide-from-left {
+		from {
+			transform: translateX(-32px);
+		}
+	}
+	@keyframes slide-to-left {
+		to {
+			transform: translateX(-32px);
+		}
 	}
 }
