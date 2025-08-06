@@ -2,54 +2,52 @@
 	import { beforeNavigate } from '$app/navigation';
 	import { getElementClosestToViewportTop, setTransitionToRight } from '$lib';
 	import { onMount } from 'svelte';
+	import OrderDrawer from '$lib/components/OrderDrawer.svelte';
 
 	const { data } = $props();
 
 	onMount(() => {
 		setTransitionToRight();
+
+		// Set the object-fit property for the image transition.
+		document.documentElement.style.setProperty('--obj-fit', 'cover');
 	});
 
 	beforeNavigate((navigation) => {
-		if (navigation.to?.url.pathname !== '/') {
-			// If the user is not going home, disable the transitions for the first (and only) image.
-			const firstImage = document.querySelector('img[data-arr-index="0"]') as HTMLImageElement;
-			if (firstImage) {
-				firstImage.style.viewTransitionClass = '';
-				firstImage.style.viewTransitionName = '';
-			}
+		// Remove the view-transition from the first image element.
+		const first_img_el = document.querySelector<HTMLImageElement>('img[data-arr-index="0"]')!;
+		first_img_el.style.viewTransitionClass = '';
+		first_img_el.style.viewTransitionName = '';
 
-			return;
-		}
+		// If the user is not going home, don't attach any new view transitions.
+		if (navigation.to?.url.pathname !== '/') return;
 
-		const required_transition_class = 'cat-image';
-		const required_transition_name = `vt-cat-image`;
-		const first_image_el = document.querySelectorAll('[data-arr-index="0"]')[0] as HTMLImageElement;
+		// Add the view-transition to the image closest to the top of the viewport.
+		const closest_img_el = getElementClosestToViewportTop<HTMLImageElement>('img[data-arr-index]')!;
+		closest_img_el.style.viewTransitionClass = 'cat-image';
+		closest_img_el.style.viewTransitionName = `vt-cat-image`;
 
-		const closestImage = getElementClosestToViewportTop<HTMLImageElement>('img[data-arr-index]');
-		if (!closestImage) {
-			console.warn('No closest image found for transition.');
-			return;
-		}
-
-		first_image_el.style.viewTransitionClass = '';
-		first_image_el.style.viewTransitionName = '';
-
-		// Attach the transition class and name to the closest image.
-		closestImage.style.viewTransitionClass = required_transition_class;
-		closestImage.style.viewTransitionName = required_transition_name;
+		// Darken the image (because the image in '/' is darkened)
+		closest_img_el.style.filter = 'brightness(90%)';
 	});
 </script>
 
 <div>
+	<!-- Category Name -->
 	<h2
 		class="mb-[18px] text-xl text-[var(--text-color-main)]"
 		style="width: fit-content; view-transition-class: cat-title; view-transition-name: vt-cat-title"
 	>
 		{data.category.name}
 	</h2>
+
+	<!-- <OrderDrawer /> -->
+
+	<!-- Category Items -->
 	<div class="flex flex-col gap-14">
 		{#each data.category.items as item, i}
-			<div>
+			<div class="relative">
+				<!-- Item Image -->
 				<img
 					data-arr-index={i}
 					style={i === 0
@@ -57,12 +55,13 @@
 						: ''}
 					src="/images/{data.category.folder}/{item.image}"
 					alt=""
-					class="z-40 mb-2.5 inline-block h-[327px] w-full rounded-[26px] object-cover object-center"
+					class="test z-40 mb-2.5 inline-block aspect-[1.61/1] w-full rounded-[26px] object-cover object-center"
 				/>
+
+				<!-- Item Info -->
 				<div class="flex items-center justify-between">
 					<h3 class="mb-1.5 font-semibold text-[var(--text-color-main)]">
 						{item.name}
-						{document.querySelector(`img[data-arr-index="${i}"]`)?.clientTop}
 					</h3>
 					<span class="text-sm text-[var(--text-color-muted)]">{item.weight} g</span>
 				</div>

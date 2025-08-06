@@ -53,7 +53,7 @@ export function setTransitionToRight() {
 	document.documentElement.style.setProperty('--vt-new', 'var(--vt-side-to-main-new)');
 }
 
-export function formatCssPropertyValue(value: string): string {
+export function normalizeCssValue(value: string): string {
 	const invalidCssCharsRegex = /[!"#$%&'()*+,\-./:;<=>?@[\\\]^`{|}~ \t\n\r]/g;
 
 	return value.replaceAll(invalidCssCharsRegex, '');

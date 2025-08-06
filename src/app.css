@@ -49,17 +49,17 @@
 
 	--vt-main-to-side-old:
 		90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-		200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+		200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
 	--vt-main-to-side-new:
-		210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-		200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+		90ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+		200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
 
 	--vt-side-to-main-old:
 		90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-		200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-right;
+		200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
 	--vt-side-to-main-new:
-		210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-		200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-left;
+		90ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+		200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
 
 	--vt-old: var(--vt-main-to-side-old);
 	--vt-new: var(--vt-main-to-side-new);
@@ -135,6 +135,8 @@
 	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
 	--color-sidebar-border: var(--sidebar-border);
 	--color-sidebar-ring: var(--sidebar-ring);
+
+	--breakpoint-xs: 420px;
 }
 
 @layer base {

@@ -7,15 +7,11 @@
 	import Phone from '@lucide/svelte/icons/phone';
 	import Wifi from '@lucide/svelte/icons/wifi';
 	import Clock4 from '@lucide/svelte/icons/clock-4';
-	import ArrowLeft from '@lucide/svelte/icons/arrow-left';
-
-	import { page } from '$app/state';
-	import { scale } from 'svelte/transition';
-	import { cubicIn, cubicInOut, quartInOut, quintInOut } from 'svelte/easing';
 	import { dev } from '$app/environment';
 	import { getTimezoneTime } from '$lib';
-	import { onNavigate } from '$app/navigation';
-	import { triggerViewTransitionEnd } from '$lib/onViewTransitionEnd';
+	import { goto, onNavigate } from '$app/navigation';
+	import { triggerViewTransitionEndCallbacks } from '$lib/hooks/onViewTransitionEnd';
+	import BackHomeButton from '$lib/components/BackHomeButton.svelte';
 
 	// Enable page transitions.
 	onNavigate((navigation) => {
@@ -28,7 +24,7 @@
 			});
 
 			viewTransition.finished.then(() => {
-				triggerViewTransitionEnd();
+				triggerViewTransitionEndCallbacks();
 			});
 		});
 	});
@@ -46,19 +42,12 @@
 </svelte:head>
 
 <div class="main-outter-wrapper no-transition grid min-h-screen grid-rows-1 bg-[#F3F1EF]">
-	<div class="relative mx-auto flex w-full max-w-[560px] flex-col overflow-hidden bg-white">
+	<div
+		class="relative mx-auto flex w-full max-w-[560px] flex-col overflow-hidden bg-white"
+		data-vaul-drawer-wrapper
+	>
 		<!-- Back Button -->
-		{#if page.url.pathname !== '/'}
-			<div class="fixed top-0 z-50">
-				<a
-					href="/"
-					class="absolute top-3 left-3 inline-block rounded-full bg-white p-[10px] shadow-xl"
-					transition:scale={{ duration: 200, easing: quintInOut }}
-				>
-					<ArrowLeft class="size-5" />
-				</a>
-			</div>
-		{/if}
+		<BackHomeButton />
 
 		<!-- Banner Image -->
 		<img
@@ -91,7 +80,7 @@
 					</p>
 				</div>
 
-				<a href="/test">TEST LINK</a>
+				<a href="/search">Search</a>
 			</div>
 
 			<div class="vt-main-content">
