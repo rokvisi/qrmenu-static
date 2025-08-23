@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { beforeNavigate } from '$app/navigation';
-	import { getElementClosestToViewportTop, setTransitionToRight } from '$lib';
+	import { getElementClosestToViewportTop, setVT_OtherToHome } from '$lib';
 	import { onMount } from 'svelte';
 	import OrderDrawer from '$lib/components/OrderDrawer.svelte';
+	import Plus from '@lucide/svelte/icons/plus';
 
 	const { data } = $props();
 
+	setVT_OtherToHome();
 	onMount(() => {
-		setTransitionToRight();
-
 		// Set the object-fit property for the image transition.
 		document.documentElement.style.setProperty('--obj-fit', 'cover');
 	});
@@ -35,7 +35,7 @@
 <div>
 	<!-- Category Name -->
 	<h2
-		class="mb-[18px] text-xl text-[var(--text-color-main)]"
+		class="mb-[18px] text-xl text-primary"
 		style="width: fit-content; view-transition-class: cat-title; view-transition-name: vt-cat-title"
 	>
 		{data.category.name}
@@ -60,26 +60,26 @@
 
 				<!-- Item Info -->
 				<div class="flex items-center justify-between">
-					<h3 class="mb-1.5 font-semibold text-[var(--text-color-main)]">
+					<h3 class="mb-1.5 font-semibold text-primary">
 						{item.name}
 					</h3>
-					<span class="text-sm text-[var(--text-color-muted)]">{item.weight} g</span>
+					<span class="text-sm text-muted-extra">{item.weight} g</span>
 				</div>
 
 				<div class="mb-1.5">
-					<p class="mb-2.5 text-sm text-[var(--text-color)]">{item.description}</p>
+					<p class="mb-2.5 text-sm text-muted">{item.description}</p>
 					{#if item.isVegan}
-						<p class="text-sm text-[var(--text-color)]">🌱 Vegan</p>
+						<p class="text-sm text-muted">🌱 Vegan</p>
 					{/if}
 				</div>
 
 				<div class="flex items-center justify-between">
-					<p class="flex gap-0.5 text-2xl font-medium text-[var(--text-color-accent)]">
+					<p class="flex gap-0.5 text-2xl font-medium text-accent">
 						{item.price} <span class="align-top text-[16px] font-normal">$</span>
 					</p>
 					<button
-						class="flex size-[38px] cursor-pointer items-center justify-center rounded-full bg-[var(--text-color-accent)] text-[32px] text-white shadow-xl"
-						>+</button
+						class="flex size-9 cursor-pointer items-center justify-center rounded-full bg-accent text-[32px] text-white shadow-xl"
+						><Plus strokeWidth={2.5} /></button
 					>
 				</div>
 			</div>

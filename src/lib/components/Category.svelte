@@ -40,12 +40,12 @@
 	});
 </script>
 
-<div class="relative aspect-[3/1] w-full rounded-3xl">
+<div class="relative aspect-[3/1] w-full rounded-[26px]">
 	<a
 		bind:this={anchorEl}
 		href="/cat/{href}"
 		style="--coverImgUrl: url('{bgImg}'); view-transition-class: cat-image;"
-		class="bgImg flex h-full items-center justify-center rounded-3xl p-4"
+		class="bgImg flex h-full items-center justify-center rounded-[26px] p-4"
 		onclick={(el) => {
 			const clickedCatImageEl = el.currentTarget as HTMLAnchorElement;
 			const clickedCatTitleEl = clickedCatImageEl.children[0] as HTMLHeadingElement;
@@ -75,7 +75,7 @@
 	>
 		<h2
 			bind:this={headingEl}
-			class="z-50 text-center text-2xl text-white text-shadow-[var(--shadow-text)] xs:text-[28px]"
+			class="z-50 text-center text-2xl text-white text-shadow xs:text-[28px]"
 			style="width: fit-content; view-transition-class: cat-title;"
 		>
 			{title}

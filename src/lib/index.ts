@@ -1,4 +1,5 @@
 import { TZDate } from '@date-fns/tz';
+import { onMount } from 'svelte';
 
 export function getTimezoneDate(timezone: string) {
 	return new TZDate(new Date(), timezone);
@@ -44,13 +45,17 @@ export function printTransitionVariables() {
 	console.log('new', getComputedStyle(document.documentElement).getPropertyValue('--vtrannew'));
 }
 
-export function setTransitionToLeft() {
-	document.documentElement.style.setProperty('--vt-old', 'var(--vt-main-to-side-old)');
-	document.documentElement.style.setProperty('--vt-new', 'var(--vt-main-to-side-new)');
+export function setVT_HomeToOther() {
+	onMount(() => {
+		document.documentElement.style.setProperty('--vt-old', 'var(--vt-main-to-side-old)');
+		document.documentElement.style.setProperty('--vt-new', 'var(--vt-main-to-side-new)');
+	});
 }
-export function setTransitionToRight() {
-	document.documentElement.style.setProperty('--vt-old', 'var(--vt-side-to-main-old)');
-	document.documentElement.style.setProperty('--vt-new', 'var(--vt-side-to-main-new)');
+export function setVT_OtherToHome() {
+	onMount(() => {
+		document.documentElement.style.setProperty('--vt-old', 'var(--vt-side-to-main-old)');
+		document.documentElement.style.setProperty('--vt-new', 'var(--vt-side-to-main-new)');
+	});
 }
 
 export function normalizeCssValue(value: string): string {

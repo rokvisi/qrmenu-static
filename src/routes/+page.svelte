@@ -1,13 +1,10 @@
 <script lang="ts">
-	import { setTransitionToRight, setTransitionToLeft } from '$lib';
+	import { setVT_HomeToOther } from '$lib';
 	import Category from '$lib/components/Category.svelte';
-	import { onMount } from 'svelte';
 
 	const { data } = $props();
 
-	onMount(() => {
-		setTransitionToLeft();
-	});
+	setVT_HomeToOther();
 </script>
 
 <div class="flex flex-col gap-4">

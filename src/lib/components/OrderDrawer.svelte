@@ -31,15 +31,13 @@
 							/>
 							<div class="flex flex-col justify-between">
 								<p>Full English Breakfast</p>
-								<p class="flex gap-0.5 text-2xl font-medium text-[var(--text-color-accent)]">
+								<p class="flex gap-0.5 text-2xl font-medium text-accent">
 									6.99 <span class="align-top text-[16px] font-normal">$</span>
 								</p>
 							</div>
 						</div>
 
-						<div
-							class="flex items-center justify-between gap-5 text-2xl text-[var(--text-color-accent)]"
-						>
+						<div class="flex items-center justify-between gap-5 text-2xl text-accent">
 							<button>-</button>
 							<span class="text-xl">1</span>
 							<button>+</button>
