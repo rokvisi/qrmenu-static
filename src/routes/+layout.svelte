@@ -61,7 +61,7 @@
 		<!-- Main Section -->
 		<main class="z-10 -mt-8 grow rounded-t-3xl bg-white px-4 pt-6 pb-12 shadow-border">
 			<div class="mb-4 flex flex-col gap-2">
-				<h1 class="text-[32px]">Planas B</h1>
+				<h1 class="text-[32px]">{data.restaurant.name}</h1>
 
 				<!-- Info Badge Area -->
 				<div class="flex flex-wrap items-center justify-start gap-2 text-sm text-muted">
