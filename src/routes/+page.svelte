@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { setVT_HomeToOther } from '$lib';
+	import { vt_set_home_to_other } from '$lib';
 	import Category from '$lib/components/Category.svelte';
 
 	const { data } = $props();
 
-	setVT_HomeToOther();
+	vt_set_home_to_other();
 </script>
 
 <div class="flex flex-col gap-4">

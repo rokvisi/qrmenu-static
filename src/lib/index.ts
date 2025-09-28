@@ -45,13 +45,13 @@ export function printTransitionVariables() {
 	console.log('new', getComputedStyle(document.documentElement).getPropertyValue('--vtrannew'));
 }
 
-export function setVT_HomeToOther() {
+export function vt_set_home_to_other() {
 	onMount(() => {
 		document.documentElement.style.setProperty('--vt-old', 'var(--vt-main-to-side-old)');
 		document.documentElement.style.setProperty('--vt-new', 'var(--vt-main-to-side-new)');
 	});
 }
-export function setVT_OtherToHome() {
+export function vt_set_other_to_home() {
 	onMount(() => {
 		document.documentElement.style.setProperty('--vt-old', 'var(--vt-side-to-main-old)');
 		document.documentElement.style.setProperty('--vt-new', 'var(--vt-side-to-main-new)');

@@ -12,6 +12,8 @@
 	import { onNavigate } from '$app/navigation';
 	import { triggerViewTransitionEndCallbacks } from '$lib/hooks/onViewTransitionEnd';
 	import BackHomeButton from '$lib/components/BackHomeButton.svelte';
+	import Search from '@lucide/svelte/icons/search';
+	import { page } from '$app/state';
 
 	// Enable page transitions.
 	onNavigate((navigation) => {
@@ -78,7 +80,16 @@
 					</p>
 				</div>
 
-				<a href="/search">Search</a>
+				<!-- Link Bar -->
+				<div>
+					<a
+						href="/search"
+						class="inline-flex items-center gap-2 rounded-lg bg-background px-2 py-1 hover:opacity-85 {page
+							.url.pathname === '/search'
+							? 'text-accent'
+							: 'text-muted'}"><Search size="18" /> Search</a
+					>
+				</div>
 			</div>
 
 			<div class="vt-main-content" style="view-transition-name: vt-main-content;">
@@ -95,10 +106,11 @@
 		animation: none;
 	}
 
-	:root::view-transition-old(vt-main-content) {
+	/* Temporarily disable non-explicitly set view-transitions. */
+	/* :root::view-transition-old(vt-main-content) {
 		animation: var(--vt-old);
 	}
 	:root::view-transition-new(vt-main-content) {
 		animation: var(--vt-new);
-	}
+	} */
 </style>

@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { beforeNavigate } from '$app/navigation';
-	import { getElementClosestToViewportTop, setVT_OtherToHome } from '$lib';
+	import { getElementClosestToViewportTop, vt_set_other_to_home } from '$lib';
 	import { onMount } from 'svelte';
-	import OrderDrawer from '$lib/components/OrderDrawer.svelte';
 	import Plus from '@lucide/svelte/icons/plus';
 
 	const { data } = $props();
 
-	setVT_OtherToHome();
+	vt_set_other_to_home();
 	onMount(() => {
 		// Set the object-fit property for the image transition.
 		document.documentElement.style.setProperty('--obj-fit', 'cover');
@@ -27,7 +26,7 @@
 		closest_img_el.style.viewTransitionClass = 'cat-image';
 		closest_img_el.style.viewTransitionName = `vt-cat-image`;
 
-		// Darken the image (because the image in '/' is darkened)
+		// Darken the image (because the same image in '/' is darkened)
 		closest_img_el.style.filter = 'brightness(90%)';
 	});
 </script>
